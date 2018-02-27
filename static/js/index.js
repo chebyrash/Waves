@@ -29,6 +29,18 @@ window.onresize = function () {
     renderer.setSize(window.innerWidth, window.innerHeight);
 };
 
+window.onYouTubePlayerAPIReady = function () {
+    let player = new YT.Player("music", {
+        videoId: "EsZUhnEWJ2c",
+        loop: true,
+        events: {
+            onReady: function (event) {
+                event.target.playVideo();
+            },
+        },
+    });
+};
+
 setup();
 render();
 

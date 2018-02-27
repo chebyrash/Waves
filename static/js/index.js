@@ -1,6 +1,6 @@
-const SEPARATION = 300;
+const SEPARATION = 200;
 const AMOUNT = 100;
-const MAXSIZE = 4;
+const MAXSIZE = 5;
 const WAVESIZE = 100;
 
 let container = document.createElement("div");

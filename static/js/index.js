@@ -30,10 +30,11 @@ window.onresize = function () {
 };
 
 setup();
-animate();
+render();
 
 function setup() {
-    for (let x = 0; x < AMOUNT; x ++) {
+    for (let x = 0; x < AMOUNT; x++) {
+        particles.push([]);
         for (let y = 0; y < AMOUNT; y++) {
             let material = new THREE.SpriteCanvasMaterial({
                 color: 0xffffff,
@@ -41,39 +42,35 @@ function setup() {
                     context.beginPath();
                     context.arc(0, 0, 0.5, 0, Math.PI * 2, true);
                     context.fill();
-                }});
+                }
+            });
             material.color = new THREE.Color(Math.random(), Math.random(), Math.random());
-            particle = new THREE.Sprite(material);
+            let particle = new THREE.Sprite(material);
             particle.position.x = x * SEPARATION - ((AMOUNT * SEPARATION) / 2);
             particle.position.z = y * SEPARATION - ((AMOUNT * SEPARATION) / 2);
-            particles.push(particle);
+            particles[x].push(particle);
             scene.add(particle);
         }
     }
 }
 
-function animate() {
-    requestAnimationFrame(animate);
-    render();
-    stats.update();
-}
-
 function render() {
-    camera.position.x += 2;
+    requestAnimationFrame(render);
+
+    stats.update();
+
+    camera.position.x += 1;
     camera.lookAt(scene.position);
 
-
-    let index = 0;
-    for (let ix = 0; ix < AMOUNT; ix ++) {
-        for (let iy = 0; iy < AMOUNT; iy ++) {
-            let particle = particles[index++];
-            particle.position.y = (Math.sin((ix + count) * 0.3) * WAVESIZE) + (Math.sin((iy + count) * 0.5) * WAVESIZE);
-            let scale = (Math.sin(( ix + count) * 0.3) + 1) * 4 + (Math.sin((iy + count) * 0.5) + 1) * MAXSIZE;
+    for (let x = 0; x < AMOUNT; x++) {
+        for (let y = 0; y < AMOUNT; y++) {
+            let particle = particles[x][y];
+            particle.position.y = (Math.sin((x + count) * 0.3) * WAVESIZE) + (Math.sin((y + count) * 0.5) * WAVESIZE);
+            let scale = (Math.sin((x + count) * 0.3) + 1) * MAXSIZE + (Math.sin((y + count) * 0.5) + 1) * MAXSIZE;
             particle.scale.x = particle.scale.y = scale;
         }
     }
 
-
     renderer.render(scene, camera);
-    count += 0.05;
+    count += 0.02;
 }

@@ -1,2 +1,2 @@
-# WavesArt
-Waves example in Three.JS | https://chebyrash.github.io/WavesArt
+# Waves
+Waves example in Three.JS | https://chebyrash.github.io/Waves

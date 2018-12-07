@@ -31,7 +31,7 @@ window.onresize = function () {
 
 window.onYouTubePlayerAPIReady = function () {
     let player = new YT.Player("music", {
-        videoId: "EsZUhnEWJ2c",
+        videoId: "XXX",
         loop: true,
         events: {
             onReady: function (event) {

@@ -1,5 +1,5 @@
 const SEPARATION = 200;
-const AMOUNT = 100;
+const AMOUNT = 50;
 const MAXSIZE = 5;
 const WAVESIZE = 100;
 
